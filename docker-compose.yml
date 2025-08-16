@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: edge_computer_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123!
+      MYSQL_DATABASE: edge_computer_db
+      MYSQL_USER: edge_user
+      MYSQL_PASSWORD: edge_password_2024!
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+      - ./database_setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    restart: unless-stopped
